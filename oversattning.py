@@ -1,14 +1,15 @@
-def oversattning(text, språk):
-    if språk == "-v":
-        print(visksprak(text))
-    elif språk == "-r":
-        print(rovarsprak(text))
-    elif språk == "-f":
-        print(fikonsprak(text))
-    elif språk == "-a":
-        print(allsprak(text))
-    elif språk == "-b":
-        print(bebissprak(text))
+import sys
+def oversattning(sys.argv[0], sys.argv[1]):
+    if sys.argv[1] == "-v":
+        print(visksprak(sys.argv[0]))
+    elif sys.argv[1] == "-r":
+        print(rovarsprak(sys.argv[0]))
+    elif sys.argv[1] == "-f":
+        print(fikonsprak(sys.argv[0]))
+    elif sys.argv[1] == "-a":
+        print(allsprak(sys.argv[0]))
+    elif sys.argv[1] == "-b":
+        print(bebissprak(sys.argv[0]))
 
 
 def fikonsprak(inrad):
