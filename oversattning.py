@@ -1,14 +1,14 @@
 def oversattning(text, språk):
     if språk == "-v":
-        return(visksprak(text))
+        print(visksprak(text))
     elif språk == "-r":
-        return(rovarsprak(text))
+        print(rovarsprak(text))
     elif språk == "-f":
-        return(fikonsprak(text))
+        print(fikonsprak(text))
     elif språk == "-a":
-        return(allsprak(text))
+        print(allsprak(text))
     elif språk == "-b":
-        return(bebissprak(text))
+        print(bebissprak(text))
 
 
 def fikonsprak(inrad):
