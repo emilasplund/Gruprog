@@ -1,16 +1,24 @@
 import sys
-def oversattning(sys.argv[0], sys.argv[1]):
-    if sys.argv[1] == "-v":
-        print(visksprak(sys.argv[0]))
-    elif sys.argv[1] == "-r":
-        print(rovarsprak(sys.argv[0]))
-    elif sys.argv[1] == "-f":
-        print(fikonsprak(sys.argv[0]))
-    elif sys.argv[1] == "-a":
-        print(allsprak(sys.argv[0]))
-    elif sys.argv[1] == "-b":
-        print(bebissprak(sys.argv[0]))
+text = sys.stdin.read()
+språk = sys.argv[1]
 
+"""gör lista med inspråk"""
+språklista = []
+for språk in sys.argv:
+    språklista.append(språk)
+språklista.pop(0)
+
+def oversattning(text, språk):
+    if språk == "-v":
+        print(visksprak(text))
+    elif språk == "-r":
+        print(rovarsprak(text))
+    elif språk == "-f":
+        print(fikonsprak(text))
+    elif språk == "-a":
+        print(allsprak(text))
+    elif språk == "-b":
+        print(bebissprak(text))
 
 def fikonsprak(inrad):
     x = inrad.split()
@@ -22,7 +30,7 @@ def fikonsprak(inrad):
         for bokstav in ord:
             tknlista.append(bokstav)
         for sak in tknlista:
-            if konsonantcheck(sak) is True:
+            if vokalcheck(sak) is False:
                 tknlista.append(sak)
                 popmätare.append(0)
             elif vokalcheck(sak) is True:
@@ -48,7 +56,7 @@ def allsprak(inrad):
         for bokstav in ord:
             tknlista.append(bokstav)
         for sak in tknlista:
-            if konsonantcheck(sak) is True:
+            if vokalcheck(sak) is False:
                 tknlista.append(sak)
                 popmätare.append(0)
             elif vokalcheck(sak) is True:
@@ -74,7 +82,7 @@ def bebissprak(inrad):
                 utord += utord + utord+ " "
                 mening += utord
                 n = len(inord)
-            elif konsonantcheck(inord[p]) is True:
+            elif vokalcheck(inord[p]) is False:
                 utord += inord[p]
                 n = n+1
     return mening
@@ -131,3 +139,5 @@ def vokalcheck(tkn):
     else:
         return False
 
+for språk in språklista:
+    oversattning(text, språk)
