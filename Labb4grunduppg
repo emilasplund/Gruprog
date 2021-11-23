@@ -1,0 +1,83 @@
+fil = open('ordlistan', encoding = 'utf-8')
+filstr = fil.read()
+orden = filstr.split()
+
+def linsok(lista, elem):
+    """ger true om element finns i lista, false om alla element testats"""
+    ordrakning = 0
+    for ord in lista:
+        ordrakning+= 1
+        if elem == ord:
+            return True
+        elif ordrakning >= len(lista):
+            return False
+
+def fragaomord():
+    """ber om ord, testar linsok på ordet"""
+    ord = input("Vilket ord vill du söka efter? " )
+    if linsok(orden, ord) is True:
+        print(ord, "finns i listan")
+    else:
+        print(ord, "finns inte i listan")
+
+def linsokkup(ordlista):
+    listkopia = ordlista
+    for elem in listkopia:
+        for n in range(1,5):
+            kuperatord = []
+            kuperatord += elem[n:5] + elem[0:n]
+            kuperatord = ''.join(kuperatord)
+            if linsok(listkopia, kuperatord) is True:
+                listkopia.remove(elem)
+                print(elem, kuperatord)
+
+def binsokkup(ordlista):
+    listkopia = ordlista
+    for elem in listkopia:
+        for n in range(1,5):
+            kuperatord = []
+            kuperatord += elem[n:5] + elem[0:n]
+            kuperatord = ''.join(kuperatord)
+            if binsok(listkopia, kuperatord) is True:
+                listkopia.remove(elem)
+                print(elem, kuperatord)
+
+
+def binsok(li, x):
+    lo = 0
+    hi = len(li)-1
+    while lo <= hi:
+        mid = (lo+hi)//2
+        if x < li[mid]:
+            hi = mid - 1
+        elif x > li[mid]:
+            lo = mid + 1
+        else:
+            return True
+    return False
+
+def br_search(v, target):
+    """returnerar true om listan v innehåller target och false annars"""
+    mid = len(v)//2
+    if target == v[mid]:
+        return True
+    elif len(v)<=1:
+        return False
+    elif target < v[mid]:
+        return br_search(v[:mid], target)
+    elif target > v[mid]:
+        return br_search(v[mid:], target)
+
+def kupsok(ordlista, funktion):
+    for elem in ordlista:
+        for n in range(1,5):
+            kuperatord = []
+            kuperatord += elem[n:5] + elem[0:n]
+            kuperatord = ''.join(kuperatord)
+            if funktion(ordlista, kuperatord) is True:
+                print(elem, kuperatord)
+
+kupsok(orden, binsok)
+
+
+

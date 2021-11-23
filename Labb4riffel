@@ -1,0 +1,39 @@
+def riffelblandning(antalkort):
+    lista = skapalista(antalkort)
+    lista2 = skapalista(antalkort)
+    rifflista = rifflalista(lista2, antalkort)
+    n = 1
+    riffelrekurs(lista, rifflista, antalkort, n)
+
+
+def riffelrekurs(lista, blandning, antalkort, n):
+    """rifflar tills leken är som ursprungsleken"""
+    if lista == blandning:
+        print("det tog ",n,"blandningar")
+    else:
+        n += 1
+        blandning = rifflalista(blandning, antalkort)
+        riffelrekurs(lista, blandning, antalkort, n)
+
+
+def skapalista(antalkort):
+    """skapar ordnad lista av nummer"""
+    nylista = []
+    for i in range(antalkort):
+        nylista.append(i)
+    return nylista
+
+
+def rifflalista(lista, antalkort):
+    nylista = skapalista(antalkort)
+    cut = len(nylista)//2
+    for i in range(0,cut):
+        nylista[2*i]=lista[i]
+    for i in range(cut,antalkort):
+        nylista[(i-cut)*2+1]=lista[i]
+    return nylista
+
+
+riffelblandning(52)
+
+
